@@ -15,7 +15,7 @@ import './App.css';
 import LoginPage from "./page-login";
 import HomePage from "./page-home";
 import {LoginContext} from "./login-context";
-import RegistrationPage from "./registration-page";
+import RegistrationPage from "./page-registration";
 
 /**
  * Primary Function

@@ -13,6 +13,7 @@ import "./home-page-hero.css";
  * Components
  */
 import HomePageHero from "./cpt-home-page-hero";
+import PreLoginNavbar from "./cpt-pre-login-navbar";
 
 /**
  * Primary function
@@ -22,6 +23,7 @@ import HomePageHero from "./cpt-home-page-hero";
 export default function HomePage(){
     return (
         <>
+            <PreLoginNavbar/>
             <HomePageHero/>
         </>
     );

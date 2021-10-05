@@ -9,7 +9,7 @@ import "./registration-form.css";
 /**
  * Components
  */
-import RegistrationForm from "./registration-form";
+import RegistrationForm from "./cpt-registration-form";
 
 /**
  * FUNCTION: RENDERS PAGE
