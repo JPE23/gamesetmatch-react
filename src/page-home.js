@@ -6,8 +6,9 @@ import React from "react";
 /**
  * Stylesheets
  */
-import "./App.css";
+// import "./App.css";
 import "./home-page-hero.css";
+import "./navbar.css"
 
 /**
  * Components
@@ -23,7 +24,7 @@ import PreLoginNavbar from "./cpt-pre-login-navbar";
 export default function HomePage(){
     return (
         <>
-            <PreLoginNavbar/>
+            {/*<PreLoginNavbar/>*/}
             <HomePageHero/>
         </>
     );

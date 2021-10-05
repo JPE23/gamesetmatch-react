@@ -1,25 +1,28 @@
-/**
- * Author: James Easy
- * Student ID: 2222741
- */
+.hero-image{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("courts.jpg");
+    height: 100vh;
+    background-size: cover;
+    position: center;
+    background-position: center;
+}
 
 .hero-container {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    #box-shadow: inset 0 0 0 1000px rgba(205, 168, 168, 0.2);
-    background-color: #ffffff;
+    box-shadow: inset 0 0 0 1000px rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0);
     object-fit: contain;
 }
 
 .title-container > h2 {
-    color: #000000;
-    font-size: 3rem;
-    font-family:  'Arvo', serif;
-    font-weight: bold;
+    color: #ffffff;
+    font-size: 2.5rem;
+    font-family:  'Roboto', sans-serif;
+    font-weight: bolder;
 }
 
 .title-container {
@@ -34,7 +37,6 @@
     font-size: 1.7rem;
     font-family: 'Arvo', serif;
     font-weight: bold;
-    color: #000000;
     text-align: center;
 }
 
@@ -46,7 +48,6 @@
 }
 .btn--primary {
     border: 1px solid #5b3926;
-    #background-color: #fff8ee;
 }
 .btn--medium {
     border: 1px solid #5b3926;
@@ -86,18 +87,4 @@ a {
     .btn {
         width: 100%;
     }
-}
-.splitScreen {
-    display: flex;
-    flex-direction: row;
-}
-.leftPane {
-    width: 50%;
-}
-.rightPane {
-    width: 50%;
-}
-.home-page-hero-image-1{
-    max-width: 50vw;
-    margin-top: 10vh;
 }

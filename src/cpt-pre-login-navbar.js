@@ -3,10 +3,11 @@
  */
 import React, {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
+import {GlobalButton} from "./cpt-global-button";
 /**
  * Stylesheets
  */
-import "./navbar.css";
+// import "./navbar.css";
 
 /**
  * PAGE COMPONENT: PRE-LOGIN NAVBAR
@@ -60,10 +61,10 @@ export default function PreLoginNavbar() {
                             " fa-bars"}/>
                     </div>
                     <ul className={clicker ? "nav-menu active" : "nav-menu"}>
-                        <li className="nav-item">
-                            <Link to="/loginPage" className="nav-links"
-                                  onClick={closeMobileMenu}>Email Login</Link>
-                        </li>
+                        {/*<li className="nav-item">*/}
+                            <GlobalButton to="/loginPage"
+                                  onClick={closeMobileMenu}>Email Login</GlobalButton>
+                        {/*</li>*/}
                     </ul>
                 </div>
             </nav>
