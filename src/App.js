@@ -1,10 +1,26 @@
+/**
+ * React Modules
+ */
 import React, {useMemo, useState} from "react";
 import {HashRouter as Router, Switch, Route} from "react-router-dom";
-import './App.css';
-import LoginPage from "./page-login";
-import {LoginContext} from "./login-context";
-import HomePage from "./page-home";
 
+/**
+ * Stylesheets
+ */
+import './App.css';
+
+/**
+ * Components
+ */
+import LoginPage from "./page-login";
+import HomePage from "./page-home";
+import {LoginContext} from "./login-context";
+
+/**
+ * Primary Function
+ * @returns {JSX.Element}
+ * @constructor
+ */
 function App() {
   const [user, setUser] = useState();
   const memoizedUsername = useMemo(() => ({user, setUser}), [user, setUser]);

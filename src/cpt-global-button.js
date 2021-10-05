@@ -1,9 +1,12 @@
+/**
+ * React Modules
+ */
 import React from "react";
 import { Link } from "react-router-dom";
 /**
  * Stylesheets
  */
-//import "./global-button.css"
+import "./global-button.css"
 /**
  * Components
  */
@@ -12,6 +15,16 @@ import { Link } from "react-router-dom";
 const STYLES = ["btn--primary", "btn--outline"];
 const SIZES  = ["btn--medium", "btn--large"];
 
+/**
+ * Primary function
+ * @param children
+ * @param type
+ * @param onClick
+ * @param buttonStyle
+ * @param buttonSize
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const GlobalButton = ({
                                  children,
                                  type,

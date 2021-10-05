@@ -1,6 +1,18 @@
+/**
+ * React Modules
+ */
 import React, {useContext} from "react";
+
+/**
+ * Components
+ */
 import {LoginContext} from "./login-context";
 
+/**
+ * Primary function
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function LoginForm() {
     return (
         <div className="login-form-container">

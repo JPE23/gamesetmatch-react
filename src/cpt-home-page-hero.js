@@ -1,6 +1,18 @@
+/**
+ * React modules
+ */
 import {Link} from "react-router-dom";
+
+/**
+ * Components
+ */
 import {GlobalButton} from "./cpt-global-button";
 
+/**
+ * Primary function
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export default function HomePageHero() {
 
     /**

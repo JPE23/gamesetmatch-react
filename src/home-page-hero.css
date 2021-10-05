@@ -1,0 +1,103 @@
+/**
+ * Author: James Easy
+ * Student ID: 2222741
+ */
+
+.hero-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    #box-shadow: inset 0 0 0 1000px rgba(205, 168, 168, 0.2);
+    background-color: #ffffff;
+    object-fit: contain;
+}
+
+.title-container > h2 {
+    color: #000000;
+    font-size: 3rem;
+    font-family:  'Arvo', serif;
+    font-weight: bold;
+}
+
+.title-container {
+    display: flex;
+    margin-top: -20vh!important;
+    margin-bottom: 0!important;
+    max-width: 50vw;
+    text-align: center;
+}
+
+.subtitle-container > p {
+    font-size: 1.7rem;
+    font-family: 'Arvo', serif;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+}
+
+.hero-btns {
+    margin-top: 32px;
+}
+.btn--outline {
+    border: 1px solid #5b3926;
+}
+.btn--primary {
+    border: 1px solid #5b3926;
+    #background-color: #fff8ee;
+}
+.btn--medium {
+    border: 1px solid #5b3926;
+    color: #000000;
+}
+#btn-logout {
+    display: none;
+}
+#btn-login {
+    display: none;
+}
+a {
+    text-decoration: none;
+    color: #000000;
+}
+@media screen and (max-width: 991px) {
+    .hero-container > h1 {
+        font-size: 70px;
+        margin-top: -150px;
+    }
+}
+@media screen and (max-width: 768px) {
+    .hero-container > h1 {
+        font-size: 50px;
+        margin-top: -100px;
+    }
+
+    .hero-container > p {
+        font-size: 30px;
+    }
+
+    .btn-mobile {
+        display: block;
+        text-decoration: none;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+.splitScreen {
+    display: flex;
+    flex-direction: row;
+}
+.leftPane {
+    width: 50%;
+}
+.rightPane {
+    width: 50%;
+}
+.home-page-hero-image-1{
+    max-width: 50vw;
+    margin-top: 10vh;
+}
