@@ -15,6 +15,7 @@ import './App.css';
 import LoginPage from "./page-login";
 import HomePage from "./page-home";
 import {LoginContext} from "./login-context";
+import RegistrationPage from "./registration-page";
 
 /**
  * Primary Function
@@ -35,7 +36,7 @@ function App() {
             {/*       component={HowItWorksPage} replace/>*/}
             <LoginContext.Provider value={memoizedUsername}>
               <Route exact path="/loginpage" component={LoginPage} replace />
-              {/*<Route exact path="/signuppage" component={RegistrationPage} replace/>*/}
+              <Route exact path="/signuppage" component={RegistrationPage} replace/>
               {/*<ProtectedRoutes exact path="/primarydashboard" component={DashboardPage} replace/>*/}
             </LoginContext.Provider>
           </Switch>
