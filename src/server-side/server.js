@@ -52,12 +52,10 @@ app.use(bodyParser.json());
  */
 app.post("/players-list", (req, res) => {
     const county = req.body.countyOfResidence;
-    console.log(county);
     db('gsmuseraccounts').where({
         county_of_residence: county
     }).select('first_name', 'county_of_residence')
         .then((data) => {
-            // console.log(data);
             res.json(data);
         })
 });

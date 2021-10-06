@@ -24,6 +24,7 @@ import {LoginContext} from "./login-context";
 import RegistrationPage from "./page-registration";
 import SearchPage from "./page-search";
 
+
 /**
  * Primary Function
  * @returns {JSX.Element}
