@@ -3,13 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cometchat-pro/chat": "^3.0.1",
     "@craco/craco": "^6.3.0",
+    "@emotion/core": "^10.0.35",
+    "@react-firebase/auth": "^0.2.10",
+    "@react-firebase/database": "^0.3.11",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "dateformat": "^4.0.0",
+    "emoji-mart": "^3.0.0",
+    "firebase": "^9.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-html-parser": "^2.0.2",
     "react-scripts": "4.0.3",
+    "twemoji": "^13.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
@@ -37,6 +46,7 @@
     ]
   },
   "devDependencies": {
+    "@react-firebase/firestore": "^0.5.5",
     "autoprefixer": "^9.8.8",
     "postcss": "^7.0.39",
     "react-router-dom": "^5.3.0",

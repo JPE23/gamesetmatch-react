@@ -62,8 +62,9 @@ export default function PreLoginNavbar() {
                     </div>
                     <ul className={clicker ? "nav-menu active" : "nav-menu"}>
                         {/*<li className="nav-item">*/}
-                            <GlobalButton to="/loginPage"
-                                  onClick={closeMobileMenu}>Email Login</GlobalButton>
+                        <Link to="/loginPage">
+                            <button className="login-btn" onClick={closeMobileMenu}>Email Login</button>
+                        </Link>
                         {/*</li>*/}
                     </ul>
                 </div>

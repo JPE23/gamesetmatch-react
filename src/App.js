@@ -1,8 +1,14 @@
 /**
  * React Modules
  */
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {HashRouter as Router, Switch, Route} from "react-router-dom";
+
+/**
+ * Firebase
+ */
+// import firebase from './firebase';
+//import './firebase/auth';
 
 /**
  * Stylesheets
@@ -16,6 +22,7 @@ import LoginPage from "./page-login";
 import HomePage from "./page-home";
 import {LoginContext} from "./login-context";
 import RegistrationPage from "./page-registration";
+import SearchPage from "./page-search";
 
 /**
  * Primary Function
@@ -23,6 +30,26 @@ import RegistrationPage from "./page-registration";
  * @constructor
  */
 function App() {
+    // useEffect(() => {
+    //     firebase.auth().onAuthStateChanged((user) => {
+    //         if (user) {
+    //             // store the user on local storage
+    //             firebase
+    //                 .firestore()
+    //                 .doc(`/users/${user.uid}`)
+    //                 .get()
+    //                 .then((doc) => {
+    //                     localStorage.setItem('user', JSON.stringify({
+    //                         ...doc.data(),
+    //                         id: doc.id,
+    //                     }));
+    //                 });
+    //         } else {
+    //             // removes the user from local storage on logOut
+    //             localStorage.removeItem('user');
+    //         }
+    //     });
+    // }, []);
   const [user, setUser] = useState();
   const memoizedUsername = useMemo(() => ({user, setUser}), [user, setUser]);
   return (
@@ -37,6 +64,7 @@ function App() {
             <LoginContext.Provider value={memoizedUsername}>
               <Route exact path="/loginpage" component={LoginPage} replace />
               <Route exact path="/signuppage" component={RegistrationPage} replace/>
+              <Route exact path="/searchpage" component={SearchPage} replace/>
               {/*<ProtectedRoutes exact path="/primarydashboard" component={DashboardPage} replace/>*/}
             </LoginContext.Provider>
           </Switch>
