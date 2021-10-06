@@ -15,7 +15,7 @@ import ReactDOM from 'react-dom';
 /**
  * CometChat
  */
-import {CometChat} from '@cometchat-pro/chat';
+// import {CometChat} from '@cometchat-pro/chat';
 
 /**
  * Stylesheets
