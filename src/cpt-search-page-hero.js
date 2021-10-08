@@ -3,42 +3,21 @@
  */
 import React, {useState} from "react";
 import $ from "jquery";
-import {Panel, Table} from "rsuite";
+import {Panel} from "rsuite";
 
 /**
  * Components
  */
 // import {GlobalButton} from "./cpt-global-button";
 // import PreLoginNavbar from "./cpt-pre-login-navbar";
+import PostLoginNavbar from "./cpt-post-login-navbar";
 
 /**
  * Stylesheets
  */
 import "./search-page-hero.css"
-import * as PropTypes from "prop-types";
 
-function HeaderCell(props) {
-    return null;
-}
 
-HeaderCell.propTypes = {children: PropTypes.node};
-
-function Column(props) {
-    return null;
-}
-
-Column.propTypes = {
-    align: PropTypes.string,
-    fixed: PropTypes.bool,
-    width: PropTypes.number,
-    children: PropTypes.node
-};
-
-function Cell(props) {
-    return null;
-}
-
-Cell.propTypes = {dataKey: PropTypes.string};
 /**
  * Primary function
  * @returns {JSX.Element}
@@ -55,11 +34,12 @@ export default function SearchPageHero() {
             headers: {"Content-Type": "application/x-www-form-urlencoded"}
         }).then((res) => {
             res.json().then(r => {
-                //let stringRes = JSON.stringify(r);
-                //setResults(stringRes);
-                let name = r[0].first_name
-                //let location = r[0].county_of_residence
-                setResults(name)
+                const array = [];
+                for (let i in r) {
+                    let x = r[i];
+                    array.push(x.first_name + "\n");
+                }
+                setResults(array)
             });
         });
     }
@@ -69,7 +49,7 @@ export default function SearchPageHero() {
      */
     return (
         <div className="hero-image">
-            {/*<PreLoginNavbar/>*/}
+            <PostLoginNavbar/>
             <div className="hero-container">
                 <div className="title-container">
                     <h2>Select your county</h2>
@@ -265,6 +245,7 @@ export default function SearchPageHero() {
                 {results ? <div className="results-container">
                     <Panel header="Your nearest matches" shaded>
                         {results}
+                        {/*<button type="submit" onClick={null}/>*/}
                     </Panel>
                 </div> : null}
             </div>

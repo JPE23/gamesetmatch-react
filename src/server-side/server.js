@@ -3,7 +3,7 @@
  * @type {e | (() => Express)}
  */
 require("dotenv").config();
-// const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const express = require("express");
@@ -48,7 +48,7 @@ app.use(helmet());
 app.use(bodyParser.json());
 
 /**
- * GET: Clears cookie on logout
+ * POST: Fetch player list
  */
 app.post("/players-list", (req, res) => {
     const county = req.body.countyOfResidence;
@@ -58,6 +58,74 @@ app.post("/players-list", (req, res) => {
         .then((data) => {
             res.json(data);
         })
+});
+
+/**
+ * POST: Adds newly registered users to database and calls NodemailerSend()
+ */
+app.post("/user-registration", (req, res) => {
+    const {
+        firstName,
+        lastName,
+        emailAdd,
+        countryOfResidence,
+        countyOfResidence,
+        gender,
+        dob,
+        password
+    } = req.body;
+    const saltRounds = 10;
+    bcrypt.hash(password, saltRounds, function (err, hash) {
+        db("useraccounts").where({email_add: emailAdd}).select("email_add")
+            .then((data) => {
+                res.setHeader("Content-Type", "application/json");
+                if (data == "") {
+                    db("gsmuseraccounts").insert({
+                        first_name: firstName,
+                        last_name: lastName,
+                        email_add: emailAdd,
+                        country_of_residence: countryOfResidence,
+                        county_of_residence: countyOfResidence,
+                        gender: gender,
+                        dob: dob,
+                        password: hash,
+
+                    }).then(() => {
+                        // NodemailerSend(emailAdd).then(r => {console.log(r)});
+                        return res.json({msg: "New user added"});
+                    });
+                } else {
+                    return res.json({msg: "Email taken"});
+                }
+            });
+    });
+});
+
+/**
+ * POST: Checks whether a user logging in exists in the database
+ */
+app.post("/user-validation", (req, res) => {
+    const emailAdd = req.body.emailAdd;
+    db("gsmuseraccounts")
+        .where({email_add: emailAdd})
+        .select("email_add")
+        .then(async (data) => {
+            res.setHeader("Content-Type", "application/json");
+            if (data == "") {
+                res.send(false);
+            } else {
+                let storedHash = await
+                db("gsmuseraccounts").where({email_add: emailAdd}).pluck("password");
+                const checkHash = bcrypt.compareSync(req.body.password, storedHash.toString());
+                if (checkHash) {
+                    res.send(data);
+                } else {
+                    res.send(false);
+                }
+            }
+        }).catch((err) => {
+        console.log(err);
+    });
 });
 
 
@@ -109,32 +177,7 @@ app.post("/players-list", (req, res) => {
 //     });
 // });
 //
-// /**
-//  * POST: Checks whether a user logging in exists in the database
-//  */
-// app.post("/user-validation", (req, res) => {
-//     const emailAdd = req.body.emailAdd;
-//     db("useraccounts")
-//         .where({email_add: emailAdd})
-//         .select("email_add")
-//         .then(async (data) => {
-//             res.setHeader("Content-Type", "application/json");
-//             if (data == "") {
-//                 res.send(false);
-//             } else {
-//                 let storedHash = await db("useraccounts").where({email_add: emailAdd}).pluck("password");
-//                 const checkHash = bcrypt.compareSync(req.body.password, storedHash.toString());
-//                 if (checkHash) {
-//                     res.send(data);
-//                 } else {
-//                     res.send(false);
-//                 }
-//             }
-//         }).catch((err) => {
-//         console.log(err);
-//
-//     });
-// });
+
 //
 // /**
 //  * POST: Returns number of surveys completed for logged in user

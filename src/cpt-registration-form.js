@@ -8,6 +8,7 @@
  */
 import React, {useContext} from "react";
 import {useHistory} from "react-router-dom";
+import $ from "jquery";
 /**
  * Stylesheets
  */
@@ -27,76 +28,75 @@ export default function RegistrationForm() {
     /**
      * HOOK OBJECT DECLARATIONS
      */
-    // const {user, setUser} = useContext(LoginContext);
-    //
-    // /**
-    //  * HOOK VARIABLE DECLARATION TO REDIRECT AFTER LOGIN
-    //  * @type {History<LocationState>}
-    //  */
-    // let history = useHistory();
-    //
-    // /**
-    //  * POST: REGISTERS NEW USER IN THE DATABASE
-    //  * @param e
-    //  */
-    // const registerUser = (e) => {
-    //     e.preventDefault();
-    //     if (doPasswordsMatch()) {
-    //         fetch("http://localhost:5000/user-registration", {
-    //             method: "POST",
-    //             body: $("#RegFormSend").serialize(),
-    //             headers: {
-    //                 "Content-Type": "application/x-www-form-urlencoded"
-    //             }
-    //         }).then((res) => {
-    //             res.json().then(r => {
-    //                 let data = JSON.stringify(r);
-    //                 if (data == "{\"msg\":\"Email taken\"}") {
-    //                     alert("Email address already in use");
-    //                     return 1;
-    //                 } else if (data == "{\"msg\":\"New user added\"}") {
-    //                     alert("Registration complete!");
-    //                     const userEmail = document.getElementById("emailAdd").value;
-    //                     setUser(userEmail);
-    //                     history.push("/primarydashboard");
-    //                     return 0;
-    //                 }
-    //             });
-    //         });
-    //     }
-    // };
-    //
-    // /**
-    //  * ENSURES USER'S PASSWORDS MATCH BEFORE FORM SUBMITS
-    //  * @returns {boolean}
-    //  */ //Can you optimise this by making it check before submit clicked?
-    // const doPasswordsMatch = () => {
-    //     let firstPassword = document.getElementById("password").value;
-    //     let confirmationPassword = document.getElementById("confPass").value;
-    //     let match = true;
-    //
-    //     if (firstPassword != confirmationPassword) {
-    //         alert("The passwords you have entered do not match! Please try" +
-    //             " again."); //Can you optimise this by showing it on screen
-    //         // rather than an alert?
-    //         document.getElementById("password").style.borderColor = "#ff0000";
-    //         document.getElementById("confPass").style.borderColor = "#ff0000";
-    //         match = false;
-    //     } else {
-    //         document.getElementById("password").style.borderColor = "#07b800";
-    //         document.getElementById("confPass").style.borderColor = "#07b800";
-    //     }
-    //     return match;
-    // };
+    const {user, setUser} = useContext(LoginContext);
+
+    /**
+     * HOOK VARIABLE DECLARATION TO REDIRECT AFTER LOGIN
+     * @type {History<LocationState>}
+     */
+    let history = useHistory();
+
+    /**
+     * POST: REGISTERS NEW USER IN THE DATABASE
+     * @param e
+     */
+    const registerUser = (e) => {
+        e.preventDefault();
+        if (doPasswordsMatch()) {
+            fetch("http://localhost:5000/user-registration", {
+                method: "POST",
+                body: $("#RegFormSend").serialize(),
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            }).then((res) => {
+                res.json().then(r => {
+                    let data = JSON.stringify(r);
+                    if (data == "{\"msg\":\"Email taken\"}") {
+                        alert("Email address already in use");
+                        return 1;
+                    } else if (data == "{\"msg\":\"New user added\"}") {
+                        alert("Registration complete!");
+                        const userEmail = document.getElementById("emailAdd").value;
+                        setUser(userEmail);
+                        history.push("/searchpage");
+                        return 0;
+                    }
+                });
+            });
+        }
+    };
+
+    /**
+     * ENSURES USER'S PASSWORDS MATCH BEFORE FORM SUBMITS
+     * @returns {boolean}
+     */ //Can you optimise this by making it check before submit clicked?
+    const doPasswordsMatch = () => {
+        let firstPassword = document.getElementById("password").value;
+        let confirmationPassword = document.getElementById("confPass").value;
+        let match = true;
+
+        if (firstPassword != confirmationPassword) {
+            alert("The passwords you have entered do not match! Please try" +
+                " again.");
+            //Can you optimise this by showing it on screen
+            // rather than an alert?
+            document.getElementById("password").style.borderColor = "#ff0000";
+            document.getElementById("confPass").style.borderColor = "#ff0000";
+            match = false;
+        } else {
+            document.getElementById("password").style.borderColor = "#07b800";
+            document.getElementById("confPass").style.borderColor = "#07b800";
+        }
+        return match;
+    };
 
     /**
      * RENDERS REGISTRATION FORM
      */
     return (
         <div className="form-container">
-            <form id="RegFormSend"
-                  // onSubmit={registerUser}
-            >
+            <form id="RegFormSend" onSubmit={registerUser}>
                 <h2>Sign-up</h2>
                 <input type="text"
                        name="firstName"
@@ -297,9 +297,9 @@ export default function RegistrationForm() {
                 />
                 <button type="submit"
                         id="reg-btn"
-                        onClick={() => {
-                            // registerUser().then(r => {});
-                            // setUser(user);
+                        onClick={(e) => {
+                            registerUser(e).then(r => {});
+                            setUser(user);
                         }}>Register
                 </button>
             </form>
