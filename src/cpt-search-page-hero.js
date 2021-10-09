@@ -17,16 +17,14 @@ import PostLoginNavbar from "./cpt-post-login-navbar";
  */
 import "./search-page-hero.css"
 
-
 /**
  * Primary function
  * @returns {JSX.Element}
  * @constructor
  */
 export default function SearchPageHero() {
-
     const [results, setResults] = useState();
-
+    let array = [];
     const listMembers = async () => {
         fetch("http://localhost:5000/players-list", {
             method: "POST",
@@ -34,12 +32,11 @@ export default function SearchPageHero() {
             headers: {"Content-Type": "application/x-www-form-urlencoded"}
         }).then((res) => {
             res.json().then(r => {
-                const array = [];
                 for (let i in r) {
                     let x = r[i];
-                    array.push(x.first_name + "\n");
+                    array.push(<li key="{item}">{x.first_name}</li>);
                 }
-                setResults(array)
+                setResults(array);
             });
         });
     }
