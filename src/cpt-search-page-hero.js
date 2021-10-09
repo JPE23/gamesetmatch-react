@@ -25,7 +25,8 @@ import "./search-page-hero.css"
 export default function SearchPageHero() {
     const [results, setResults] = useState();
     let array = [];
-    const listMembers = async () => {
+    const listMembers = async (e) => {
+        e.preventDefault();
         fetch("http://localhost:5000/players-list", {
             method: "POST",
             body: $("#countyOfResidence").serialize(),
