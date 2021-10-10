@@ -2,14 +2,18 @@
  * React modules
  */
 import React, {useState} from "react";
+import {useHistory} from "react-router-dom";
 import $ from "jquery";
-import {Panel} from "rsuite";
+
+/**
+ * Prime React modules
+ */
+import { DataTable } from 'primereact/datatable';
+import { Button } from 'primereact/button';
 
 /**
  * Components
  */
-// import {GlobalButton} from "./cpt-global-button";
-// import PreLoginNavbar from "./cpt-pre-login-navbar";
 import PostLoginNavbar from "./cpt-post-login-navbar";
 
 /**
@@ -23,23 +27,56 @@ import "./search-page-hero.css"
  * @constructor
  */
 export default function SearchPageHero() {
+
     const [results, setResults] = useState();
-    let array = [];
+
+    const history = useHistory();
+
+    const columns = [{field: 'first_name', header: 'Name'},];
+
     const listMembers = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         fetch("http://localhost:5000/players-list", {
             method: "POST",
             body: $("#countyOfResidence").serialize(),
             headers: {"Content-Type": "application/x-www-form-urlencoded"}
         }).then((res) => {
             res.json().then(r => {
-                for (let i in r) {
-                    let x = r[i];
-                    array.push(<li key="{item}">{x.first_name}</li>);
-                }
-                setResults(array);
+                // for (let i in r) {
+                //     let x = r[i];
+                //     array.push(<ul key="{item}">{x.first_name + "\n"} </ul>);
+                //     //array.push(<ul key="{item}">{x.county_of_residence  +
+                //     // "\n"} </ul>);
+                //     // array.push(x.first_name);
+                //     // array.push(x.county_of_residence);
+                // }
+                setResults(r)
             });
         });
+    }
+
+    const goToProfilePage = async (e) =>{
+        e.preventDefault();
+        let path = '/profilepage';
+        history.push(path);
+    }
+    const dynamicColumns = columns.map((col,i) => {
+        return <DataTable.Column
+            key={col.field}
+            field={col.field}
+            header={col.header}
+        />
+    });
+
+    const actionBodyTemplate = () => {
+        return(
+            <Button
+                type="button"
+                icon="pi pi-cog"
+                className="p-button-secondary"
+                onClick={goToProfilePage}
+            >View Profile</Button>
+        );
     }
 
     /**
@@ -241,12 +278,18 @@ export default function SearchPageHero() {
                     </button>
                 </form>
                 {results ? <div className="results-container">
-                    <Panel header="Your nearest matches" shaded>
-                        {results}
-                        {/*<button type="submit" onClick={null}/>*/}
-                    </Panel>
+                    <DataTable value={results}>
+                        {dynamicColumns}
+                        <DataTable.Column
+                            body={actionBodyTemplate}
+                            headerStyle={{width: '8em', textAlign: 'center'}}
+                            bodyStyle={{textAlign: 'center', overflow: 'visible'}}
+                        />
+                    </DataTable>
                 </div> : null}
             </div>
         </div>
-    );
-}
+    );}
+
+{/*{results}*/}
+{/*<button type="submit" onClick={null}/>*/}

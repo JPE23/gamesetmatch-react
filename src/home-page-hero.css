@@ -1,6 +1,6 @@
 .hero-image{
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("courts.jpg");
-    height: 100vh;
+    height: 110vh;
     background-size: cover;
     position: center;
     background-position: center;

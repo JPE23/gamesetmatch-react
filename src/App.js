@@ -20,9 +20,10 @@ import './App.css';
  */
 import LoginPage from "./page-login";
 import HomePage from "./page-home";
-import {LoginContext} from "./login-context";
+import { LoginContext } from "./login-context";
 import RegistrationPage from "./page-registration";
 import SearchPage from "./page-search";
+import ProfilePage from "./page-profile";
 
 
 /**
@@ -66,6 +67,7 @@ function App() {
               <Route exact path="/loginpage" component={LoginPage} replace />
               <Route exact path="/signuppage" component={RegistrationPage} replace/>
               <Route exact path="/searchpage" component={SearchPage} replace/>
+              <Route exact path="/profilepage" component={ProfilePage} replace/>
               {/*<ProtectedRoutes exact path="/primarydashboard" component={DashboardPage} replace/>*/}
             </LoginContext.Provider>
           </Switch>
